@@ -74,11 +74,7 @@ extension ViewController: UITableViewDelegate {
         guard let section = sender.view?.tag else {
             return
         }
-        if courseArray[section].isShown {
-            courseArray[section].isShown = false
-        } else {
-           courseArray[section].isShown = true
-        }
+        courseArray[section].isShown.toggle()
         
         tableView.beginUpdates()
         tableView.reloadSections([section], with: .automatic)
