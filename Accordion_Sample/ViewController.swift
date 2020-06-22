@@ -8,10 +8,10 @@
 
 import UIKit
 
-struct course {
+struct rail {
     var isShown: Bool
-    var courseName: String
-    var mentorLists: [String]
+    var railName: String
+    var stationArray: [String]
 }
 
 final class ViewController: UIViewController {
@@ -29,16 +29,16 @@ final class ViewController: UIViewController {
     let dentoArray: [String] = ["溝の口", "二子玉川"]
     let jobanArray: [String] = ["上野"]
     
-    lazy var courseArray = [course(isShown: true, courseName: headerArray[0], mentorLists: yamanoteArray),
-                            course(isShown: false, courseName: headerArray[1], mentorLists: toyokoArray),
-                            course(isShown: false, courseName: headerArray[2], mentorLists: dentoArray),
-                            course(isShown: false, courseName: headerArray[3], mentorLists: jobanArray)]
+    lazy var courseArray = [rail(isShown: true, railName: headerArray[0], stationArray: yamanoteArray),
+                            rail(isShown: false, railName: headerArray[1], stationArray: toyokoArray),
+                            rail(isShown: false, railName: headerArray[2], stationArray: dentoArray),
+                            rail(isShown: false, railName: headerArray[3], stationArray: jobanArray)]
 }
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if courseArray[section].isShown {
-            return courseArray[section].mentorLists.count
+            return courseArray[section].stationArray.count
         } else {
             return 0
         }
@@ -46,7 +46,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = courseArray[indexPath.section].mentorLists[indexPath.row]
+        cell?.textLabel?.text = courseArray[indexPath.section].stationArray[indexPath.row]
         
         return cell!
     }
@@ -56,7 +56,7 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return courseArray[section].courseName
+        return courseArray[section].railName
     }
 }
 
